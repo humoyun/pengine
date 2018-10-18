@@ -1,0 +1,9 @@
+body {
+  margin: 0;
+}
+
+#canvas {
+  margin-left: 100px;
+  border: 1px rgba(108, 117, 117, 0.356) solid;
+  border-radius: 4px;
+}
