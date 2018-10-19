@@ -8,7 +8,7 @@ gEngine.Core = (function(){
   mCanvas.height = mHeight;
 
   function clearCanvas() {
-    mContext.clearRect(0,0,mCanvas.width,mCanvas.height)
+    mContext.clearRect(0, 0, mCanvas.width, mCanvas.height);
   }
 
   var mPublic = {
