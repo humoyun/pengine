@@ -2,7 +2,6 @@ const history = [];
 const storage = [];
 
 function userControl (event) {
-  console.log("<script src=core/core.js></script>")
   var keyCode;
   var width = gEngine.Core.mWidth;
   var height = gEngine.Core.mHeight;
@@ -10,7 +9,8 @@ function userControl (event) {
   var clearCanvas = gEngine.Core.clearCanvas;
 
   function _rand() {
-    return Math.random()
+    const sum = Array.from(arguments).reduce((a,b)=>a*b);
+    return Math.round(Math.random() * sum);
   }
 
   function drawRect(rectObj) {
@@ -24,6 +24,7 @@ function userControl (event) {
   }
 
   function drawCircle(circleObj) {
+    context.strokeStyle = circleObj.color;
     context.beginPath();
     context.arc(
       circleObj.x,
@@ -48,11 +49,12 @@ function userControl (event) {
   if (keyCode === 70) {
     let rect = {
       type: 'rect',
-      x : _rand() * width * 0.8, 
-      y : _rand() * height * 0.8,
-      width : _rand() * 30 + 10,
-      height : _rand() * 30 + 10,
-      color : 'green'
+      color : 'green',
+      x : _rand(width, 0.8), 
+      y : _rand(width, 0.8),
+      width : _rand(30)+ 10,
+      height : _rand(30) + 10,
+      
     };
     drawRect(rect);
     history.push(rect);
@@ -61,11 +63,12 @@ function userControl (event) {
   if (keyCode === 71) {
     let circle = {
       type: 'circle',
-      x : _rand() * width * 0.8, 
-      y : _rand() * height * 0.8,
-      r : _rand() * 30 + 10,
+      color : 'blue',
+      x : _rand(width, 0.8), 
+      y : _rand(height, 0.8),
+      r : _rand(30) + 10,
       sAngle : 0,
-      eAngle : Math.PI,
+      eAngle : 2 * Math.PI,
       ccw: true 
     };
     drawCircle(circle);
