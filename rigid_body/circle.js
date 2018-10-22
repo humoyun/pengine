@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-function Circle (center) {
-    RigidShape.call(this);
-    
-=======
 function Circle (center, radius) {
   RigidShape.call(this, center);
   this.type = 'Circle';
@@ -24,5 +19,4 @@ Circle.prototype.draw = function(ctx) {
   ctx.lineTo(this.center.x, this.center.y);
   ctx.closePath();
   ctx.stroke();
->>>>>>> 415e9da53131b3d1edf1426da7f1b0f268e4dedb
 }

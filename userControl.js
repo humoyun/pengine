@@ -14,32 +14,6 @@ function userControl (event) {
     return Math.round(Math.random() * sum);
   }
 
-  // function drawRect(rectObj) {
-  //   context.strokeStyle = rectObj.color;
-  //   context.fillStyle = 'yellow';
-  //   context.strokeRect(
-  //     rectObj.x,
-  //     rectObj.y,
-  //     rectObj.width,
-  //     rectObj.height,
-  //   ); 
-  // }
-
-  // function drawCircle(circleObj) {
-  //   context.strokeStyle = circleObj.color;
-  //   context.beginPath();
-  //   context.arc(
-  //     circleObj.x,
-  //     circleObj.y,
-  //     circleObj.r,
-  //     circleObj.sAngle,
-  //     circleObj.eAngle,
-  //     circleObj.ccw,
-  //   );
-  //   context.closePath();
-  //   context.stroke();
-  // }
-
   if (window.event) {
     keyCode = event.keyCode;    
   } else if (event.which) {
@@ -49,16 +23,6 @@ function userControl (event) {
   console.log(keyCode);
 
   if (keyCode === 70) {
-    // let rect = {
-    //   type: 'rect',
-    //   color : 'green',
-    //   x : _rand(width, 0.8), 
-    //   y : _rand(width, 0.8),
-    //   width : _rand(30)+ 10,
-    //   height : _rand(30) + 10,
-    // };
-    // drawRect(rect);
-    // history.push(rect);
     const center = new Vec2D(_rand(width, 0.8), _rand(height, 0.8));
     const mWidth = _rand(30) + 10;
     const mHeight = _rand(30) + 10;
@@ -66,18 +30,6 @@ function userControl (event) {
   }
 
   if (keyCode === 71) {
-    // let circle = {
-    //   type: 'circle',
-    //   color : 'blue',
-    //   x : _rand(width, 0.8), 
-    //   y : _rand(height, 0.8),
-    //   r : _rand(30) + 10,
-    //   sAngle : 0,
-    //   eAngle : 2 * Math.PI,
-    //   ccw: true 
-    // };
-    // drawCircle(circle);
-    // history.push(circle);
     const center = new Vec2D(_rand(width, 0.8), _rand(height, 0.8));
     const radius = _rand(30) + 20;
     new Circle(center, radius);
@@ -126,6 +78,5 @@ function userControl (event) {
       }
       history.push(shape);
     }
-
   }
 }
