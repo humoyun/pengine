@@ -9,6 +9,18 @@ gEngine.Core = (function(){
   mCanvas.width = mWidth;
   mCanvas.height = mHeight;
   
+
+  mCanvas.onmousedown = function( e ) {
+    console.log('[onmousedown]: ', e.x, e.y, e.pageX, e.pageY, e.offsetX, e.offsetY, e.type);
+  }
+  
+  mCanvas.onmouseup = function( e ) {
+    console.log('[onmouseup]: ', e.x, e.y, canvas.offsetLeft, canvas.offsetRight);
+  }
+  
+  mCanvas.onmousemove = function(e) {
+  }
+
   var clearCanvas = function clearCanvas() {
     mContext.clearRect(0, 0, mCanvas.width, mCanvas.height);
   }
@@ -51,6 +63,10 @@ gEngine.Core = (function(){
         mContext.strokeStyle = 'red';
       } else {
         mContext.strokeStyle = 'blue';
+        // mContext.shadowBlur = 4;
+        // mContext.shadowColor = 'black';
+        // mContext.shadowOffsetX = 4;
+        // mContext.shadowOffsetY = 4;
       }
       objectStorage[i].draw(mContext);
     }

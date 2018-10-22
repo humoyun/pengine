@@ -1,6 +1,8 @@
 function MyGame () {
   const width = gEngine.Core.mWidth;
   const height = gEngine.Core.mHeight;
+
+  var center = new Rectangle(new Vec2D(width/2, height/2), 3, 3, 0);
   const up = new Rectangle(new Vec2D(width/2, 0), width, 3);
   const down = new Rectangle(new Vec2D(width/2, height), width, 3);
   const left = new Rectangle(new Vec2D(0, height/2), 3, height);
