@@ -91,7 +91,7 @@ function userControl (event) {
     }
   }
 
-  /* Reset the scene */
+  /* [ R key ] Reset the scene */
   if (keyCode === 82) {
     gEngine.Core.mObjectStorage.splice(5, gEngine.Core.mObjectStorage.length);
     currObjIndex = 0;
