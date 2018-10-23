@@ -3,7 +3,7 @@ window.gEngine = gEngine;
 
 gEngine.Core = (function(){
   const mObjectStorage = [];
-
+  let showCanvasGrid = false;
   let mCanvas; 
   let mContext; 
   let mWidth = 800; 
@@ -58,7 +58,9 @@ gEngine.Core = (function(){
     }
     updateUIEcho();
     draw();
-    canvasGrid();
+    if (showCanvasGrid) {
+      drawCanvasGrid();
+    }
   }
 
   var updateUIEcho = function() {
@@ -109,11 +111,12 @@ gEngine.Core = (function(){
     }
   }
 
-  var initEngineCore = function() {
+  var initEngineCore = function(canvasGrid) {
     runGameLoop();
+    showCanvasGrid = canvasGrid;
   }
 
-  var canvasGrid = function() {
+  var drawCanvasGrid = function() {
     mContext.save();
     for (let i=1; i<16; i+=1) {
       mContext.beginPath();
@@ -137,10 +140,8 @@ gEngine.Core = (function(){
     clearCanvas,
     mObjectStorage,
     initEngineCore,
-    canvasGrid
+    showCanvasGrid
   };
-
-  
 
   return mPublic;
 }());
