@@ -1,8 +1,9 @@
-function Rectangle (center, width, height) {
+function Rectangle (center, width, height, fix) {
   RigidShape.call(this, center);
   this.width = width;
   this.height = height;
   this.type = 'Rectangle';
+  this.mFix = fix;
   this.vertices = [];
   this.faceNormals = [];
 
@@ -13,14 +14,7 @@ function Rectangle (center, width, height) {
   this.vertices[3] = new Vec2D(this.center.x-width/2, this.center.y+height/2);
 
   /* face normals for collision detection */
-  this.faceNormals[0] = this.vertices[1].subtract(this.vertices[2]);
-  this.faceNormals[0] = this.faceNormals[0].normalize();
-  this.faceNormals[1] = this.vertices[2].subtract(this.vertices[3]);
-  this.faceNormals[1] = this.faceNormals[1].normalize();
-  this.faceNormals[2] = this.vertices[3].subtract(this.vertices[0]);
-  this.faceNormals[2] = this.faceNormals[2].normalize();
-  this.faceNormals[3] = this.vertices[0].subtract(this.vertices[1]);
-  this.faceNormals[3] = this.faceNormals[3].normalize();
+  this.calcFaceNormals();
 }
 
 let rectProto = Object.create(RigidShape.prototype);
@@ -34,6 +28,43 @@ Rectangle.prototype.draw = function(ctx) {
   ctx.strokeRect(0,0,this.width, this.height);
   ctx.restore();
 }
+
+Rectangle.prototype.move = function(delta) {
+  for (let i=0; i<this.vertices.length; i+=1) {
+    this.vertices[i] = this.vertices[i].add(delta);
+  }
+  this.center = this.center.add(delta);
+  return this;
+}
+
+Rectangle.prototype.rotate = function(angle) {
+  this.angle += angle;
+  for (let i=0; i<this.vertices.length; i+=1) {
+    this.vertices[i] = this.vertices[i].rotate(this.center, angle);
+  }
+  /* recalculate face normals */
+  this.calcFaceNormals();
+  return this;
+}
+
+Rectangle.prototype.calcFaceNormals = function() {
+  /* face normals for collision detection */
+  this.faceNormals[0] = this.vertices[1].subtract(this.vertices[2]);
+  this.faceNormals[0] = this.faceNormals[0].normalize();
+  this.faceNormals[1] = this.vertices[2].subtract(this.vertices[3]);
+  this.faceNormals[1] = this.faceNormals[1].normalize();
+  this.faceNormals[2] = this.vertices[3].subtract(this.vertices[0]);
+  this.faceNormals[2] = this.faceNormals[2].normalize();
+  this.faceNormals[3] = this.vertices[0].subtract(this.vertices[1]);
+  this.faceNormals[3] = this.faceNormals[3].normalize();
+}
+
+
+
+
+
+
+
 
 
 /**

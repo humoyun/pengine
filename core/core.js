@@ -1,14 +1,27 @@
 var gEngine = gEngine || {};
 
 gEngine.Core = (function(){
-  const objectStorage = [];
+  const mmObjectStorage = [];
 
-  let mCanvas, mContext, mWidth = 800, mHeight = 450;
+  let mCanvas; 
+  let mContext; 
+  let mWidth = 800; 
+  let mHeight = 450;
+  let mCurrentTime; 
+  let mElapsedTime; 
+  let mPreviousTime = Date.now();
+  let mLagTime = 0;
+  let kFPS = 60; // frames per second
+  let kFrameTime = 1 / kFPS; // seconds
+  let mUpdateIntervalTime = kFrameTime;
+  let kMPF = 1000 * kFrameTime; // milliseconds per frame
+
   mCanvas = document.getElementById('canvas');
   mContext = mCanvas.getContext('2d');
   mCanvas.width = mWidth;
   mCanvas.height = mHeight;
   
+  /* ------------------------------------------------ */
 
   mCanvas.onmousedown = function( e ) {
     console.log('[onmousedown]: ', e.x, e.y, e.pageX, e.pageY, e.offsetX, e.offsetY, e.type);
@@ -29,6 +42,18 @@ gEngine.Core = (function(){
     requestAnimationFrame(function() {
       runGameLoop();
     });
+    //compute how much time has elapsed since the last RunLoop
+    mCurrentTime = Date.now();
+    mElapsedTime = mCurrentTime - mPreviousTime;
+    mPreviousTime = mCurrentTime;
+    mLagTime += mElapsedTime;
+    //Update the game the appropriate number of times.
+    //Update only every Milliseconds per frame. 
+    //If lag larger then update frames, update until caught up.
+    while (mLagTime >= kMPF) {
+      mLagTime -= kMPF;
+      update();
+    }
     updateUIEcho();
     draw();
   }
@@ -39,18 +64,21 @@ gEngine.Core = (function(){
     <ul style="margin: -10px;">
       <li>ID: ${currObjIndex}</li>
       <li>
-        Center: ${objectStorage[currObjIndex].center.x.toPrecision(3)},
-        ${objectStorage[currObjIndex].center.y.toPrecision(3)}
+        Center: ${mmObjectStorage[currObjIndex].center.x.toPrecision(3)},
+        ${mObjectStorage[currObjIndex].center.y.toPrecision(3)}
       </li>
+      <li>Angle: ${mObjectStorage[currObjIndex].angle.toPrecision(3)}</li>
     </ul>
     <hr>
     <p><b>Control</b>: of selected object</p>
     <ul style="margin: -10px;">
       <li><b>Num</b> or <b>Up/Down Arrow: </b> SelectObject</li>
-      <li></li>
+      <li><b>WASD + QE</b>: Position [Move + Rotate]</li>
     </ul>
     <hr>
     <b>F/G</b>: Spawn: [Rectangle/Circle] at random position
+    <p><b>H</b>: Fix object</p>
+    <p><b>R</b>: Reset System</p>
     <hr>
     `;
     document.querySelector('#ui-echo-string').innerHTML = innerHTMLStr;
@@ -58,7 +86,7 @@ gEngine.Core = (function(){
 
   var draw = function() {
     mContext.clearRect(0, 0, mWidth, mHeight);
-    for (let i=0; i<objectStorage.length; i+=1) {
+    for (let i=0; i<mObjectStorage.length; i+=1) {
       if (i === currObjIndex) {
         mContext.strokeStyle = 'red';
       } else {
@@ -68,7 +96,13 @@ gEngine.Core = (function(){
         // mContext.shadowOffsetX = 4;
         // mContext.shadowOffsetY = 4;
       }
-      objectStorage[i].draw(mContext);
+      mObjectStorage[i].draw(mContext);
+    }
+  }
+
+  var update = function() {
+    for (let i=0; i<mObjectStorage.length; i+=1) {
+      mObjectStorage[i].update(mContext);
     }
   }
 
@@ -81,7 +115,7 @@ gEngine.Core = (function(){
     mHeight,
     mContext,
     clearCanvas,
-    objectStorage,
+    mObjectStorage,
     initEngineCore
   };
 

@@ -36,7 +36,7 @@ function userControl (event) {
   }
 
   if (keyCode >= 48 && keyCode <= 57) {
-    if (keyCode - 48 < gEngine.Core.objectStorage.length) {
+    if (keyCode - 48 < gEngine.Core.mObjectStorage.length) {
       currObjIndex = keyCode - 48;
     }
   } 
@@ -48,7 +48,7 @@ function userControl (event) {
   }
   /* down arrow */
   if(keyCode === 40) {
-    if (currObjIndex < gEngine.Core.objectStorage.length - 1) {
+    if (currObjIndex < gEngine.Core.mObjectStorage.length - 1) {
       currObjIndex += 1;
     }
   }
