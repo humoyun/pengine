@@ -65,26 +65,28 @@ gEngine.Core = (function(){
 
   var updateUIEcho = function() {
     const innerHTMLStr = `
-    <p><b>Selected Object: </b>:</p>
-    <ul style="margin: -10px;">
-      <li>ID: ${currObjIndex}</li>
-      <li>
-        Center: ${mObjectStorage[currObjIndex].center.x.toPrecision(3)},
-        ${mObjectStorage[currObjIndex].center.y.toPrecision(3)}
-      </li>
-      <li>Angle: ${mObjectStorage[currObjIndex].angle.toPrecision(3)}</li>
-    </ul>
-    <hr>
-    <p><b>Control</b>: of selected object</p>
-    <ul style="margin: -10px;">
-      <li><b>Num</b> or <b>Up/Down Arrow: </b> SelectObject</li>
-      <li><b>WASD + QE</b>: Position [Move + Rotate]</li>
-    </ul>
-    <hr>
-    <b>F/G</b>: Spawn: [Rectangle/Circle] at random position
-    <p><b>H</b>: Fix object</p>
-    <p><b>R</b>: Reset System</p>
-    <hr>
+    <div class="canvas-control">
+      <p><b>Selected Object: </b>:</p>
+      <ul style="margin: -10px;">
+        <li><b>ID:</b> ${currObjIndex}</li>
+        <li>
+          <b>Center</b>: ${mObjectStorage[currObjIndex].center.x.toPrecision(3)},
+          ${mObjectStorage[currObjIndex].center.y.toPrecision(3)}
+        </li>
+        <li><b>Angle</b>: ${mObjectStorage[currObjIndex].angle.toPrecision(3)}</li>
+      </ul>
+      <hr>
+      <p><b>Control</b>: of selected object</p>
+      <ul style="margin: -10px;">
+        <li><b>Num</b> or <b>Up/Down Arrow: </b> SelectObject</li>
+        <li><b>WASD + QE</b>: Position [Move + Rotate]</li>
+      </ul>
+      <hr>
+      <b>F/G</b>: Spawn: [Rectangle/Circle] at random position
+      <p><b>H</b>: Fix object</p>
+      <p><b>R</b>: Reset System</p>
+      <hr>
+    </div>
     `;
     document.querySelector('#ui-echo-string').innerHTML = innerHTMLStr;
   }
@@ -139,8 +141,7 @@ gEngine.Core = (function(){
     mContext,
     clearCanvas,
     mObjectStorage,
-    initEngineCore,
-    showCanvasGrid
+    initEngineCore
   };
 
   return mPublic;
