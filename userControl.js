@@ -85,9 +85,9 @@ function userControl (event) {
   /* Toggle gravity with `H` key */
   if (keyCode === 72) {
     if(gEngine.Core.mObjectStorage[currObjIndex].mFix === 0) {
-      Engine.Core.mObjectStorage[currObjIndex].mFix = 1;
+      gEngine.Core.mObjectStorage[currObjIndex].mFix = 1;
     } else {
-      Engine.Core.mObjectStorage[currObjIndex].mFix = 0;
+      gEngine.Core.mObjectStorage[currObjIndex].mFix = 0;
     }
   }
 

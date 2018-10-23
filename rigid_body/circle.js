@@ -1,3 +1,5 @@
+let circleClock = 0;
+
 function Circle (center, radius, fix) {
   RigidShape.call(this, center);
   this.type = 'Circle';
@@ -26,11 +28,16 @@ Circle.prototype.move = function(delta) {
   // adding the movement vector `s` to the center and the startpoint.
   this.startPoint = this.startPoint.add(delta);
   this.center = this.center.add(delta);
+  circleClock += 1;
+  if (circleClock%10===0) {
+    console.log('**[Circle:move] center: (', this.center.x,',',this.center.y, '); pointer:(', this.startPoint.x,',', this.startPoint.y, ')');
+  }
   return this;
 }
 
 Circle.prototype.rotate = function(angle) {
   this.angle += angle;
   this.startPoint = this.startPoint.rotate(this.center, angle);
+  console.log('[Circle:rotate] = ', this);
   return this;
 }

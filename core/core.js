@@ -1,7 +1,8 @@
 var gEngine = gEngine || {};
+window.gEngine = gEngine;
 
 gEngine.Core = (function(){
-  const mmObjectStorage = [];
+  const mObjectStorage = [];
 
   let mCanvas; 
   let mContext; 
@@ -20,7 +21,7 @@ gEngine.Core = (function(){
   mContext = mCanvas.getContext('2d');
   mCanvas.width = mWidth;
   mCanvas.height = mHeight;
-  
+
   /* ------------------------------------------------ */
 
   mCanvas.onmousedown = function( e ) {
@@ -42,6 +43,7 @@ gEngine.Core = (function(){
     requestAnimationFrame(function() {
       runGameLoop();
     });
+    
     //compute how much time has elapsed since the last RunLoop
     mCurrentTime = Date.now();
     mElapsedTime = mCurrentTime - mPreviousTime;
@@ -56,6 +58,7 @@ gEngine.Core = (function(){
     }
     updateUIEcho();
     draw();
+    canvasGrid();
   }
 
   var updateUIEcho = function() {
@@ -64,7 +67,7 @@ gEngine.Core = (function(){
     <ul style="margin: -10px;">
       <li>ID: ${currObjIndex}</li>
       <li>
-        Center: ${mmObjectStorage[currObjIndex].center.x.toPrecision(3)},
+        Center: ${mObjectStorage[currObjIndex].center.x.toPrecision(3)},
         ${mObjectStorage[currObjIndex].center.y.toPrecision(3)}
       </li>
       <li>Angle: ${mObjectStorage[currObjIndex].angle.toPrecision(3)}</li>
@@ -110,14 +113,34 @@ gEngine.Core = (function(){
     runGameLoop();
   }
 
+  var canvasGrid = function() {
+    mContext.save();
+    for (let i=1; i<16; i+=1) {
+      mContext.beginPath();
+      mContext.strokeStyle = '#ccc';
+      mContext.lineWidth = 0.4;
+      mContext.moveTo(i*50, 0);
+      mContext.lineTo(i*50, 450);
+      if (i<10) {
+        mContext.moveTo(0, i*50);
+        mContext.lineTo(800, i*50);
+      }
+      mContext.stroke();
+    }
+    mContext.restore();
+  }
+
   var mPublic = {
     mWidth,
     mHeight,
     mContext,
     clearCanvas,
     mObjectStorage,
-    initEngineCore
+    initEngineCore,
+    canvasGrid
   };
+
+  
 
   return mPublic;
 }());
