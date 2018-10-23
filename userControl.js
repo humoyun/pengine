@@ -19,16 +19,19 @@ function userControl (event) {
   } else if (event.which) {
     keyCode = event.which
   }
+
   /* G */
   if (keyCode === 70) {
-    const center = new Vec2D(_rand(width, 0.8), _rand(height, 0.8));
+    const centre = gEngine.Core.mObjectStorage[currObjIndex].center;
+    const center = new Vec2D(centre.x, centre.y);
     const mWidth = _rand(30) + 10;
     const mHeight = _rand(30) + 10;
     new Rectangle(center, mWidth, mHeight);
   }
   /* F */
   if (keyCode === 71) {
-    const center = new Vec2D(_rand(width, 0.8), _rand(height, 0.8));
+    const centre = gEngine.Core.mObjectStorage[currObjIndex].center;
+    const center = new Vec2D(centre.x, centre.y);
     const radius = _rand(30) + 20;
     new Circle(center, radius);
   }
@@ -86,6 +89,12 @@ function userControl (event) {
     } else {
       Engine.Core.mObjectStorage[currObjIndex].mFix = 0;
     }
+  }
+
+  /* Reset the scene */
+  if (keyCode === 82) {
+    gEngine.Core.mObjectStorage.splice(5, gEngine.Core.mObjectStorage.length);
+    currObjIndex = 0;
   }
 
   // if (keyCode === 90) {
