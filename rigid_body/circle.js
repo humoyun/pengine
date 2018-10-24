@@ -7,6 +7,7 @@ function Circle (center, radius, fix) {
   this.mFix = fix;
   // The start point of line in circle
   this.startPoint = new Vec2D(center.x, center.y - radius);
+  console.log('>>> startPoint: ',  this.startPoint);
 }
 
 let circleProto = Object.create(RigidShape.prototype);
@@ -36,7 +37,11 @@ Circle.prototype.move = function(delta) {
 }
 
 Circle.prototype.rotate = function(angle) {
+  if (this.angle >= 6.30 || this.angle <= -6.30) {
+    this.angle = 0;
+  }
   this.angle += angle;
+  console.log(`Angle: ${this.angle}, ${angle}`);
   this.startPoint = this.startPoint.rotate(this.center, angle);
   console.log('[Circle:rotate] = ', this);
   return this;
