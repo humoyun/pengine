@@ -37,6 +37,9 @@ Circle.prototype.move = function(delta) {
 }
 
 Circle.prototype.rotate = function(angle) {
+  if (this.angle >= 6.30 || this.angle <= -6.30) {
+    this.angle = 0;
+  }
   this.angle += angle;
   console.log(`Angle: ${this.angle}, ${angle}`);
   this.startPoint = this.startPoint.rotate(this.center, angle);

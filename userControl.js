@@ -24,8 +24,8 @@ function userControl (event) {
   if (keyCode === 70) {
     const centre = gEngine.Core.mObjectStorage[currObjIndex].center;
     const center = new Vec2D(centre.x, centre.y);
-    const mWidth = _rand(30) + 10;
-    const mHeight = _rand(30) + 10;
+    const mWidth = _rand(50) + 20;
+    const mHeight = _rand(50) + 20;
     new Rectangle(center, mWidth, mHeight);
   }
   /* F */

@@ -38,6 +38,9 @@ Rectangle.prototype.move = function(delta) {
 }
 
 Rectangle.prototype.rotate = function(angle) {
+  if (this.angle >= 6.30 || this.angle <= -6.30) {
+    this.angle = 0;
+  }
   this.angle += angle;
   for (let i=0; i<this.vertices.length; i+=1) {
     this.vertices[i] = this.vertices[i].rotate(this.center, angle);
