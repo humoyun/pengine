@@ -2,6 +2,7 @@ function Rectangle (center, width, height, fix) {
   RigidShape.call(this, center);
   this.width = width;
   this.height = height;
+  this.mBoundRadius = Math.sqrt(width*width + height*height)/2;
   this.type = 'Rectangle';
   this.mFix = fix;
   this.vertices = [];

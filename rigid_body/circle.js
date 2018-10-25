@@ -1,10 +1,10 @@
 let circleClock = 0;
 
-function Circle (center, radius, fix) {
-  RigidShape.call(this, center);
+function Circle (center, radius, mass, friction, rstitution) {
+  RigidShape.call(this, center, mass, friction, rstitution);
   this.type = 'Circle';
   this.radius = radius;
-  this.mFix = fix;
+  this.mBoundRadius = radius;
   // The start point of line in circle
   this.startPoint = new Vec2D(center.x, center.y - radius);
   console.log('>>> startPoint: ',  this.startPoint);
@@ -29,20 +29,32 @@ Circle.prototype.move = function(delta) {
   // adding the movement vector `s` to the center and the startpoint.
   this.startPoint = this.startPoint.add(delta);
   this.center = this.center.add(delta);
-  circleClock += 1;
-  if (circleClock%10===0) {
-    console.log('**[Circle:move] center: (', this.center.x,',',this.center.y, '); pointer:(', this.startPoint.x,',', this.startPoint.y, ')');
-  }
+  console.log('**[Circle:move] center: (', this.center.x,',',this.center.y, '); pointer:(', this.startPoint.x,',', this.startPoint.y, ')');
+  
   return this;
 }
 
 Circle.prototype.rotate = function(angle) {
-  if (this.angle >= 6.30 || this.angle <= -6.30) {
-    this.angle = 0;
-  }
+  // if (this.angle >= 6.30 || this.angle <= -6.30) {
+  //   this.angle = 0;
+  // }
   this.angle += angle;
-  console.log(`Angle: ${this.angle}, ${angle}`);
   this.startPoint = this.startPoint.rotate(this.center, angle);
   console.log('[Circle:rotate] = ', this);
   return this;
+}
+
+/* collision */
+Circle.prototype.collisionTest = function(otherShape, collInfo) {
+  let status = false;
+  if (otherShape.type === 'Circle') {
+    status = this.collidedCircCirc(this, otherShape, collInfo);
+  } else {
+    status = false;
+  }
+  return status;
+}
+
+Circle.prototype.collidedCircCirc = function(self, other, collInfo) {
+  
 }

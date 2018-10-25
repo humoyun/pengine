@@ -49,15 +49,19 @@ gEngine.Core = (function(){
     mElapsedTime = mCurrentTime - mPreviousTime;
     mPreviousTime = mCurrentTime;
     mLagTime += mElapsedTime;
-    //Update the game the appropriate number of times.
-    //Update only every Milliseconds per frame. 
-    //If lag larger then update frames, update until caught up.
-    while (mLagTime >= kMPF) {
-      mLagTime -= kMPF;
-      update();
-    }
+    // Update the game the appropriate number of times.
+    // Update only every Milliseconds per frame. 
+    // If lag larger then update frames, update until caught up.
+
     updateUIEcho();
     draw();
+
+    while (mLagTime >= kMPF) {
+      mLagTime -= kMPF;
+      gEngine.Physics.collision();
+      update();
+    }
+
     if (showCanvasGrid) {
       drawCanvasGrid();
     }
@@ -83,7 +87,7 @@ gEngine.Core = (function(){
       </ul>
       <hr>
       <b>F/G</b>: Spawn: [Rectangle/Circle] at random position
-      <p><b>H</b>: Fix object</p>
+      <!--  <p><b>H</b>: Fix object</p> -->
       <p><b>R</b>: Reset System</p>
       <hr>
     </div>
