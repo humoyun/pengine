@@ -4,7 +4,6 @@ gEngine.Physics = (function(){
 
   var collision = function() {
     const _ = gEngine.Core;
-    
 
     for (let i=5; i<_.mObjectStorage.length; i+=1) {
       for (let j=i+1; j<_.mObjectStorage.length; j+=1) {
