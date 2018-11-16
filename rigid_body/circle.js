@@ -14,6 +14,10 @@ let circleProto = Object.create(RigidShape.prototype);
 circleProto.constructor = Circle;
 Circle.prototype = circleProto;
 
+/**
+ * 
+ * @param {*} ctx 
+ */
 Circle.prototype.draw = function(ctx) {
   ctx.beginPath();
   // draw a circle
@@ -25,6 +29,10 @@ Circle.prototype.draw = function(ctx) {
   ctx.stroke();
 }
 
+/**
+ * 
+ * @param {*} delta 
+ */
 Circle.prototype.move = function(delta) {
   // adding the movement vector `s` to the center and the startpoint.
   this.startPoint = this.startPoint.add(delta);
@@ -34,6 +42,10 @@ Circle.prototype.move = function(delta) {
   return this;
 }
 
+/**
+ * 
+ * @param {*} angle 
+ */
 Circle.prototype.rotate = function(angle) {
   // if (this.angle >= 6.30 || this.angle <= -6.30) {
   //   this.angle = 0;
@@ -42,26 +54,4 @@ Circle.prototype.rotate = function(angle) {
   this.startPoint = this.startPoint.rotate(this.center, angle);
   console.log('[Circle:rotate] = ', this);
   return this;
-}
-
-/* collision */
-Circle.prototype.collisionTest = function(otherShape, collInfo) {
-  let status = false;
-  if (otherShape.type === 'Circle') {
-    status = this.collidedCircCirc(this, otherShape, collInfo);
-  } else {
-    status = false;
-  }
-  return status;
-}
-
-Circle.prototype.collidedCircCirc = function(self, other, collInfo) {
-  const fromV1toV2 = self.center.subtract(other.center);
-  const radiusSum = self.radius + other.radius;
-  const distance = fromV1toV2.magnitude();
-  
-  if (distance > Math.sqrt(radiusSum*radiusSum)) {
-    return false; // not overlapping
-  }
-  
 }
