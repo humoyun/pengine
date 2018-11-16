@@ -56,5 +56,12 @@ Circle.prototype.collisionTest = function(otherShape, collInfo) {
 }
 
 Circle.prototype.collidedCircCirc = function(self, other, collInfo) {
+  const fromV1toV2 = self.center.subtract(other.center);
+  const radiusSum = self.radius + other.radius;
+  const distance = fromV1toV2.magnitude();
+  
+  if (distance > Math.sqrt(radiusSum*radiusSum)) {
+    return false; // not overlapping
+  }
   
 }

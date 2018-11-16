@@ -6,6 +6,10 @@ function Rectangle (center, width, height, fix) {
   this.type = 'Rectangle';
   this.vertices = [];
   this.faceNormals = [];
+  // if (this.width>10 && this.height>10) {
+  this.centerPoint = center;
+  //}
+  
 
   /*  */  
   this.vertices[0] = new Vec2D(this.center.x-width/2, this.center.y-height/2);
@@ -37,6 +41,7 @@ Rectangle.prototype.move = function(delta) {
     this.vertices[i] = this.vertices[i].add(delta);
   }
   this.center = this.center.add(delta);
+  this.centerPoint.move(this.center);
   return this;
 }
 
