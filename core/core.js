@@ -39,6 +39,9 @@ gEngine.Core = (function(){
     mContext.clearRect(0, 0, mCanvas.width, mCanvas.height);
   }
 
+  /**
+   * Main Game Engine Loop 
+   */
   var runGameLoop = function () {
     requestAnimationFrame(function() {
       runGameLoop();
@@ -117,9 +120,9 @@ gEngine.Core = (function(){
     }
   }
 
-  var initEngineCore = function(canvasGrid) {
+  var initEngineCore = function(showCanvasGridArg) {
     runGameLoop();
-    showCanvasGrid = canvasGrid;
+    showCanvasGrid = showCanvasGridArg;
   }
 
   var drawCanvasGrid = function() {
