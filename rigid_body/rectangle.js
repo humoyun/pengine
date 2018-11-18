@@ -2,10 +2,14 @@ function Rectangle (center, width, height, fix) {
   RigidShape.call(this, center);
   this.width = width;
   this.height = height;
+  this.mBoundRadius = Math.sqrt(width*width + height*height)/2;
   this.type = 'Rectangle';
-  this.mFix = fix;
   this.vertices = [];
   this.faceNormals = [];
+  // if (this.width>10 && this.height>10) {
+  this.centerPoint = center;
+  //}
+  
 
   /*  */  
   this.vertices[0] = new Vec2D(this.center.x-width/2, this.center.y-height/2);
@@ -17,8 +21,11 @@ function Rectangle (center, width, height, fix) {
   this.calcFaceNormals();
 }
 
+// const shape = new RigidShape();
+// let rectProto = Object.create(Object.getPrototypeOf(shape));
 let rectProto = Object.create(RigidShape.prototype);
-rectProto.constructor = Rectangle;
+// by default rectProto.constructor points to RigidShape function
+rectProto.constructor = Rectangle; 
 Rectangle.prototype = rectProto;
 
 Rectangle.prototype.draw = function(ctx) {
@@ -34,6 +41,7 @@ Rectangle.prototype.move = function(delta) {
     this.vertices[i] = this.vertices[i].add(delta);
   }
   this.center = this.center.add(delta);
+  this.centerPoint.move(this.center);
   return this;
 }
 
@@ -68,6 +76,16 @@ Rectangle.prototype.calcFaceNormals = function() {
 
 
 
+// reCAPTCHA
+// site key: 6LeKmXoUAAAAACocAAhavvh2Jv3FEVEn8ulNL9lo
+// Secret key: 6LeKmXoUAAAAALAGEnzi7c52E5aldyQziRYcBtEF
+
+// <script src='https://www.google.com/recaptcha/api.js'></script>
+// 
+
+// secret (required)	6LeKmXoUAAAAALAGEnzi7c52E5aldyQziRYcBtEF
+// response (required)	The value of 'g-recaptcha-response'.
+
 
 
 /**
@@ -83,6 +101,4 @@ Rectangle.prototype.calcFaceNormals = function() {
  * newly transformed one, we simply 
  * restore the state we saved 
  * before transforming. 
- * 
- * Got it? LOL. Here’s some pictures to make it clearer.
  */

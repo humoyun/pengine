@@ -1,1 +1,11 @@
-## Pengine
+# Pengine
+
+Here I will list 
+
+## TO-DOs:
+ - Support for Collision Detection (Broad Phase Methods and SAT)
+ - Support center point for Rectangular Shape (Circle type should be `center`)
+ - Support for mouse events
+ - Support for dragging shapes
+ - Support for elementary physics about movements: mass, inertia, gravity
+ - Support for ...

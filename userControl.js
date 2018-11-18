@@ -82,15 +82,6 @@ function userControl (event) {
     gEngine.Core.mObjectStorage[currObjIndex].rotate(0.1);
   }
 
-  /* Toggle gravity with `H` key */
-  if (keyCode === 72) {
-    if(gEngine.Core.mObjectStorage[currObjIndex].mFix === 0) {
-      gEngine.Core.mObjectStorage[currObjIndex].mFix = 1;
-    } else {
-      gEngine.Core.mObjectStorage[currObjIndex].mFix = 0;
-    }
-  }
-
   /* [ R key ] Reset the scene */
   if (keyCode === 82) {
     gEngine.Core.mObjectStorage.splice(5, gEngine.Core.mObjectStorage.length);
