@@ -24,16 +24,16 @@ gEngine.Core = (function(){
 
   /* ------------------------------------------------ */
 
-  mCanvas.onmousedown = function( e ) {
-    console.log('[onmousedown]: ', e.x, e.y, e.pageX, e.pageY, e.offsetX, e.offsetY, e.type);
-  }
+  // mCanvas.onmousedown = function( e ) {
+  //   console.log('[onmousedown]: ', e.x, e.y, e.pageX, e.pageY, e.offsetX, e.offsetY, e.type);
+  // }
   
-  mCanvas.onmouseup = function( e ) {
-    console.log('[onmouseup]: ', e.x, e.y, canvas.offsetLeft, canvas.offsetRight);
-  }
+  // mCanvas.onmouseup = function( e ) {
+  //   console.log('[onmouseup]: ', e.x, e.y, canvas.offsetLeft, canvas.offsetRight);
+  // }
   
-  mCanvas.onmousemove = function(e) {
-  }
+  // mCanvas.onmousemove = function(e) {
+  // }
 
   var clearCanvas = function clearCanvas() {
     mContext.clearRect(0, 0, mCanvas.width, mCanvas.height);

@@ -58,19 +58,19 @@ function userControl (event) {
   /* move with WASD keys */
   if (keyCode === 87) {
     // [ W key ] x=0, y=-10 move down along Y axis (negative direction)
-    gEngine.Core.mObjectStorage[currObjIndex].move(new Vec2D(0, -10));
+    gEngine.Core.mObjectStorage[currObjIndex].move(new Vec2D(0, -5));
   }
   if (keyCode === 83) {
     // [ S key ] x=0, y=-10 move down along Y axis (positive direction)
-    gEngine.Core.mObjectStorage[currObjIndex].move(new Vec2D(0, 10));    
+    gEngine.Core.mObjectStorage[currObjIndex].move(new Vec2D(0, 5));    
   }
   if (keyCode === 65) {
     // [ A key ] x=0, y=-10 move down along X axis (negative direction)
-    gEngine.Core.mObjectStorage[currObjIndex].move(new Vec2D(-10, 0));
+    gEngine.Core.mObjectStorage[currObjIndex].move(new Vec2D(-5, 0));
   }
   if (keyCode === 68) {
     // [ D key ] x=0, y=-10 move right along X axis (positive direction)
-    gEngine.Core.mObjectStorage[currObjIndex].move(new Vec2D(10, 0));
+    gEngine.Core.mObjectStorage[currObjIndex].move(new Vec2D(5, 0));
   }
   /* Rotate CW & CCW */
   if (keyCode === 81) {

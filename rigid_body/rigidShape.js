@@ -1,3 +1,10 @@
+/**
+ * 
+ * @param {Vec2D} center 
+ * @param {*} mass 
+ * @param {*} friction 
+ * @param {*} restitution 
+ */
 function RigidShape (center, mass, friction, restitution) {
   this.center = center;
   this.angle = 0;

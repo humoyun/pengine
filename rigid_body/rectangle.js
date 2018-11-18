@@ -1,4 +1,4 @@
-function Rectangle (center, width, height, fix) {
+function Rectangle (center, width, height) {
   RigidShape.call(this, center);
   this.width = width;
   this.height = height;
@@ -69,11 +69,6 @@ Rectangle.prototype.calcFaceNormals = function() {
   this.faceNormals[3] = this.vertices[0].subtract(this.vertices[1]);
   this.faceNormals[3] = this.faceNormals[3].normalize();
 }
-
-
-
-
-
 
 
 // reCAPTCHA

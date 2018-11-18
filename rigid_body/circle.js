@@ -7,7 +7,6 @@ function Circle (center, radius, mass, friction, rstitution) {
   this.mBoundRadius = radius;
   // The start point of line in circle
   this.startPoint = new Vec2D(center.x, center.y - radius);
-  console.log('>>> startPoint: ',  this.startPoint);
 }
 
 let circleProto = Object.create(RigidShape.prototype);
@@ -37,7 +36,7 @@ Circle.prototype.move = function(delta) {
   // adding the movement vector `s` to the center and the startpoint.
   this.startPoint = this.startPoint.add(delta);
   this.center = this.center.add(delta);
-  console.log('**[Circle:move] center: (', this.center.x,',',this.center.y, '); pointer:(', this.startPoint.x,',', this.startPoint.y, ')');
+  // console.log('**[Circle:move] center: (', this.center.x,',',this.center.y, '); pointer:(', this.startPoint.x,',', this.startPoint.y, ')');
   
   return this;
 }
@@ -52,6 +51,6 @@ Circle.prototype.rotate = function(angle) {
   // }
   this.angle += angle;
   this.startPoint = this.startPoint.rotate(this.center, angle);
-  console.log('[Circle:rotate] = ', this);
+  // console.log('[Circle:rotate] = ', this);
   return this;
 }
