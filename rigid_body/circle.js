@@ -1,7 +1,7 @@
 let circleClock = 0;
 
-function Circle (center, radius, mass, friction, rstitution) {
-  RigidShape.call(this, center, mass, friction, rstitution);
+function Circle (center, radius, mass, friction, restitution) {
+  RigidShape.call(this, center, mass, friction, restitution);
   this.type = 'Circle';
   this.radius = radius;
   this.mBoundRadius = radius;

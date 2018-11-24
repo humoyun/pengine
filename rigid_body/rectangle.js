@@ -41,7 +41,7 @@ Rectangle.prototype.move = function(delta) {
     this.vertices[i] = this.vertices[i].add(delta);
   }
   this.center = this.center.add(delta);
-  this.centerPoint.move(this.center);
+  
   return this;
 }
 

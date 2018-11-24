@@ -1,5 +1,6 @@
-function Triangle(center) {
-  RigidShape.call(this, center);
+function Triangle(center, vertices) {
+  const [A, B, C] = vertices;
+  RigidShape.call(this, );
 }
 
 let triangleProto = Object.create(RigidShape.prototype);
